@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 18px;
+  font-family: 'Roboto Slab', serif;
+  background-color: azure;
+}
+
+.container {
+  max-width: 650px;
+  margin: auto;
+}
+
+header {
+  margin: 15px;
+}
+
+.main-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.main-buttons .main-btn {
+  background-color: inherit;
+  border: 1px solid rgb(16, 159, 192);
+  border-radius: 20px;
+  height: 2.5rem;
+  width: 30%;
+  font-family: inherit;
+}
+
+.main-input {
+  width: 100%;
+  margin: 20px 0;
+  height: 3rem;
+  font-size: 1rem;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-family: inherit;
+}
+
+.todo-list__todo {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 15px 20px;
+  border: none;
+  border-radius: 20px;
+  list-style: none;
+  box-shadow: 1px 1px 3px black;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.todo-list__todo .input-wrap {
+  display: flex;
+}
+
+.todo-list__todo .input-wrap .checkbox {
+  margin-right: 10px;
+}
+
+.todo-list__todo .input-wrap .title {
+  margin-right: 10px;
+  display: block;
+  overflow-wrap: break-word;
+}
+
+.todo-list__todo .remove-btn {
+  border: none;
+  border-radius: 10px;
+}
+
+.todo-list .completed {
+  opacity: 0.8;
+  text-decoration: line-through;
+}
+
+.todo-list .empty-todo-list {
+  text-align: center;
+}
