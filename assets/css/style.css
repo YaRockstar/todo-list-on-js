@@ -48,6 +48,7 @@ header {
   .main-buttons .main-btn {
     width: 100%;
     margin-bottom: 10px;
+    font-size: 1.1rem;
   }
 }
 
@@ -74,6 +75,19 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+@media (max-width: 650px) {
+  .main-input-wrap {
+    width: 90%;
+    margin: auto;
+  }
+
+  .todo-list__todo {
+    width: 90%;
+    margin: auto;
+    margin-bottom: 20px;
+  }
 }
 
 .todo__input-wrap {
