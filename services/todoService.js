@@ -21,16 +21,26 @@ export class TodoService {
   }
 
   complete(id) {
-    const todo = this.todoList.find(t => t.id === id);
+    const todo = this.getById(id);
     todo.isCompleted = !todo.isCompleted;
-    if (todo.isCompleted) {
-      this.todoList = TodoService.sortByCompleted(this.todoList);
-    } else {
-      this.todoList = TodoService.sortById(this.todoList);
-    }
+    this.todoList = TodoService.sortById(this.todoList);
+    this.todoList = TodoService.sortByCompleted(this.todoList);
   }
 
-  clear() {
+  edit(id) {
+    const todo = this.getById(id);
+    todo.isEdited = !todo.isEdited;
+  }
+
+  getById(id) {
+    return this.todoList.find(t => t.id === id);
+  }
+
+  getSingleEdited() {
+    return this.todoList.find(t => t.isEdited);
+  }
+
+  clearAll() {
     this.todoList = [];
   }
 

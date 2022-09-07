@@ -5,8 +5,7 @@ export class LocalStorageService {
   }
 
   get() {
-    const todoList = JSON.parse(localStorage.getItem('todoList')) ?? [];
-    return todoList;
+    return JSON.parse(localStorage.getItem('todoList')) ?? [];
   }
 
   clear() {

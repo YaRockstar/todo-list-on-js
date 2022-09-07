@@ -12,26 +12,29 @@ const clearBtn = document.querySelector('.main-buttons__clear-btn');
 const clearCompletedBtn = document.querySelector(
   '.main-buttons__clear-completed-btn'
 );
-const input = document.querySelector('.main-input');
+
+const mainInput = document.querySelector('.main-input');
 const todoListContainer = document.querySelector('.todo-list');
 
 addBtn.addEventListener('click', () => {
-  const title = input.value;
-  if (title) {
+  const text = mainInput.value;
+
+  if (text) {
     const id = Date.now();
-    const todo = new Todo(id, title);
+    const todo = new Todo(id, text);
 
     todoService.add(todo);
     local.set(todoService.todoList);
 
-    input.value = '';
+    mainInput.value = '';
     renderTodoList(todoService.todoList);
   }
 });
 
 clearBtn.addEventListener('click', () => {
-  todoService.clear();
+  todoService.clearAll();
   local.clear();
+  mainInput.value = '';
   renderTodoList(todoService.todoList);
 });
 
@@ -41,23 +44,57 @@ clearCompletedBtn.addEventListener('click', () => {
   renderTodoList(todoService.todoList);
 });
 
-input.addEventListener('keydown', event => {
-  const title = input.value;
-  if (title && event.key === 'Enter') {
+mainInput.addEventListener('keydown', event => {
+  const text = mainInput.value;
+  const todo = todoService.getSingleEdited();
+
+  if (todo && event.key === 'Enter') {
+    todo.text = text || todo.text;
+    todoService.edit(todo.id);
+    local.set(todoService.todoList);
+
+    document.querySelector('.main-buttons').style.display = 'flex';
+    mainInput.value = '';
+    renderTodoList(todoService.todoList);
+    return;
+  }
+
+  if (text && event.key === 'Enter') {
     const id = Date.now();
-    const todo = new Todo(id, title);
+    const todo = new Todo(id, text);
 
     todoService.add(todo);
     local.set(todoService.todoList);
 
-    input.value = '';
+    mainInput.value = '';
     renderTodoList(todoService.todoList);
+    return;
   }
 });
 
 todoListContainer.addEventListener('click', event => {
   const type = event.target?.dataset?.type;
   const id = +event.target?.closest('li')?.dataset?.id;
+
+  if (type === 'edit-btn') {
+    todoService.edit(id);
+    const todo = todoService.getById(id);
+    const mainButtons = document.querySelector('.main-buttons');
+
+    if (todo.isEdited) {
+      mainButtons.style.display = 'none';
+      mainInput.value = todo.text;
+      mainInput.focus();
+      renderEditedTodo(todo);
+      return;
+    }
+
+    if (!todo.isEdited) {
+      mainButtons.style.display = 'flex';
+      todo.text = mainInput.value || todo.text;
+      mainInput.value = '';
+    }
+  }
 
   if (type === 'checkbox') {
     todoService.complete(id);
@@ -73,6 +110,10 @@ todoListContainer.addEventListener('click', event => {
 
 function renderTodoList(todoList) {
   todoListContainer.innerHTML = html.paintTodoList(todoList);
+}
+
+function renderEditedTodo(todo) {
+  todoListContainer.innerHTML = html.paintEditedTodo(todo);
 }
 
 renderTodoList(todoService.todoList);

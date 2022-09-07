@@ -25,20 +25,35 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-around;
+  margin-bottom: 20px;
 }
 
 .main-buttons .main-btn {
-  background-color: inherit;
-  border: 1px solid rgb(16, 159, 192);
+  background-color: rgb(24, 201, 255);
+  color: white;
+  border: none;
   border-radius: 20px;
-  height: 2.5rem;
+  height: 2.7rem;
   width: 30%;
   font-family: inherit;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+@media (max-width: 600px) {
+  .main-buttons {
+    flex-direction: column;
+  }
+
+  .main-buttons .main-btn {
+    width: 100%;
+    margin-bottom: 10px;
+  }
 }
 
 .main-input {
   width: 100%;
-  margin: 20px 0;
+  margin: 15px 0;
   height: 3rem;
   font-size: 1rem;
   border: none;
@@ -61,30 +76,63 @@ header {
   justify-content: space-between;
 }
 
-.todo-list__todo .input-wrap {
+.todo__input-wrap {
   display: flex;
 }
 
-.todo-list__todo .input-wrap .checkbox {
+.todo__checkbox {
   margin-right: 10px;
+  cursor: pointer;
 }
 
-.todo-list__todo .input-wrap .title {
+.todo__text {
   margin-right: 10px;
   display: block;
-  overflow-wrap: break-word;
+  word-break: break-all;
 }
 
-.todo-list__todo .remove-btn {
+.edited-text {
+  background-color: rgb(255, 255, 255);
+}
+
+.todo__buttons {
+  display: flex;
+  flex-direction: column;
+  margin-right: 10px;
+  margin-left: 15px;
+}
+
+.todo__buttons__remove-btn {
   border: none;
-  border-radius: 10px;
+  background-color: rgb(208, 0, 0);
+  color: white;
+  border-radius: 20px;
+  height: 1.5rem;
+  width: 5rem;
+  font-family: inherit;
+  margin-bottom: 10px;
+  cursor: pointer;
 }
 
-.todo-list .completed {
+.todo__buttons__edit-btn {
+  border: none;
+  background-color: rgb(0, 87, 0);
+  color: white;
+  border-radius: 20px;
+  height: 1.5rem;
+  width: 5rem;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.completed {
   opacity: 0.8;
+}
+
+.completed .todo__text {
   text-decoration: line-through;
 }
 
-.todo-list .empty-todo-list {
+.todo-list__empty {
   text-align: center;
 }
