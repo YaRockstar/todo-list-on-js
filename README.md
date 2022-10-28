@@ -1,2 +1,3 @@
 # todo-list-on-js
-todo list on vanilla JS
+Todo list on vanilla JS.
+This todo list is pretty simple. You can add, edit and remove your todo.
