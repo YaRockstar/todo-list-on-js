@@ -4,7 +4,7 @@ export class TodoService {
   }
 
   static sortByCompleted(todoList) {
-    return todoList.sort((a, b) => +a.isCompleted - +b.isCompleted);
+    return todoList.sort((a, b) => Number(a.isCompleted) - Number(b.isCompleted));
   }
 
   static sortById(todoList) {
