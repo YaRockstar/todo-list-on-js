@@ -21,10 +21,12 @@ export class HTMLService {
   paintTodo(todo) {
     let className = '';
     let checked = '';
+    
     if (todo.isCompleted) {
       className = 'completed';
       checked = 'checked';
     }
+    
     return `
       <li class="todo-list__todo ${className}" data-id="${todo.id}">
         <div class="todo__input-wrap">        
