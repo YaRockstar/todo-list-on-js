@@ -68,7 +68,6 @@ mainInput.addEventListener('keydown', event => {
 
     mainInput.value = '';
     renderTodoList(todoService.todoList);
-    return;
   }
 });
 
